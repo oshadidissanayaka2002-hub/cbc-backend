@@ -9,6 +9,28 @@ export function creatUser(req,res){
     
     const newUserData = req.body
 
+    if(newUserData.type == "admin"){
+
+        if(req.user == null){
+            res.json({
+                message:"Plese login as asministrator to create admin account"
+            })
+
+            return
+        }
+
+        if(req.user.type != "admin"){
+            res.json({
+                message:"Plese login as asministrator to create admin account"
+            })
+
+            return
+        }
+
+
+        
+    }
+
     newUserData.password = bcrypt.hashSync(newUserData.password, 10)
 
     const user = new User(newUserData)
@@ -63,7 +85,50 @@ export function loginUser(req,res){
     )
 }
 
+export function isAdmin(req){
+    if(req.user == null){
+        return false
+    }
 
+    if(req.user.type != "admin"){
+        return false
+    }
 
+    return true
+}
+
+export function isCustomer(req){
+    if(req.user == null){
+        return false
+    }
+
+    if(req.user.type != "customer"){
+        return false
+    }
+
+    return true
+}
+
+//admin
+//{
+//    "email": "malith278@example.com",
+  //  "firstName": "John",
+    //"lastName": "Doe",
+    //"password": "MyStrongPassword123!",
+    //"isBlocked": false,
+    //"type": "admin",
+    //"profilePicture": "https://www.flaticon.com/free-icon/user_219983"
+//}
+
+//customer
+//{
+   // "email": "malith2789@example.com",
+   // "firstName": "John",
+   // "lastName": "Doe",
+   // "password": "MyStrongPassword123!",
+   // "isBlocked": false,
+    
+   // "profilePicture": "https://www.flaticon.com/free-icon/user_219983"
+//}
 
 
