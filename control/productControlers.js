@@ -12,9 +12,9 @@ export function createProduct(req,res){
 
     const newProductData = req.body
 
-    const product = new product(newProductData)
+    const newproduct = new product(newProductData)
 
-    product.save().then(()=>{
+    newproduct.save().then(()=>{
         res.json({
             message : "Product created"
         })
