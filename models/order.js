@@ -4,29 +4,29 @@ const orderSchema = mongoose.Schema({
     orderId : {
         type : String,
         required : true,
-        unique :ture
+        unique : true
     },
     email : {
         type : String,
-        required : ture
+        required : true
     },
     orderItem : [
         {
              name : {
                 type : String,
-                required : ture
+                required : true
              },
              price : {
                 type : Number,
-                required : ture
+                required : true
              },
              quantity : {
                 type : Number,
-                required : ture
+                required : true
              },
              image : {
                 type : String,
-                required : ture
+                required : true
              }
         }
     ],
@@ -43,17 +43,19 @@ const orderSchema = mongoose.Schema({
     },
     name : {
         type : String,
-        required : ture
+        required : true
     },
     address : {
         type : String,
-        required : ture 
+        required : true 
     },
     phone : {
         type : String,
-        required : ture
+        required : true
     }
    
 })
 
-const Order = mongoose.model("orders".orderSchema);
+const Order = mongoose.model("orders",orderSchema);
+
+export default Order;
